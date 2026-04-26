@@ -1,0 +1,54 @@
+<html>
+
+    <head>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <div class="formbold-main-wrapper">
+
+            <div class="w-full">
+
+                <!-- Form -->
+                <div class="formbold-form-wrapper">
+                    <!-- Header -->
+                    <div class="formbold-form-header">
+                        <h3>Frog Paradise - New Blog Post</h3>
+                    </div>
+
+                    <!-- Form Fields -->
+                    <form action="https://formbold.com/s/FORM_ID" method="POST" class="formbold-chatbox-form">
+
+                        <!-- Post Body -->
+                        <div class="formbold-mb-5">
+                            <label for="message" class="formbold-form-label"> Blog Post Body </label>
+                            <textarea rows="6" name="message" id="message" placeholder="Type your thoughts..."
+                                class="formbold-form-input"></textarea>
+                        </div>
+
+                        <!-- Tags -->
+                        <div class="formbold-mb-5">
+                            <label for="name" class="formbold-form-label"> Post Tags </label>
+                            <input type="text" name="name" id="name" placeholder="Your Name" class="formbold-form-input" />
+                        </div>
+
+                        <div>
+                            <button class="formbold-btn w-full">Create Blog Post</button>
+                        </div>
+
+                        <emoji-picker></emoji-picker>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+        <script>
+            
+        </script>
+    </body>
+
+</html>
