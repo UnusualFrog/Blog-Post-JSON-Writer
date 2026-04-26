@@ -1,9 +1,16 @@
-const formWrapper = document.querySelector(".formbold-form-wrapper");
-const formActionButton = document.querySelector(".formbold-action-btn");
+const emojiPicker = document.querySelector('emoji-picker');
 
-function chatboxToogleHandler() {
-    formWrapper.classList.toggle("active");
-    formActionButton.classList.toggle("active");
+function emojiToggleHandler() {
+    emojiPicker.classList.toggle("emoji");
+    // formActionButton.classList.toggle("active");
+}
+
+function toggle() {
+  if (emojiPicker.style.display === "none") {
+    emojiPicker.style.display = "block";
+  } else {
+    emojiPicker.style.display = "none";
+  }
 }
 
 document.querySelector('emoji-picker')

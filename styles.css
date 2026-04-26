@@ -5,6 +5,7 @@
         }
         body {
             font-family: "Inter", sans-serif;
+            background-color: #aab2ff;
         }
         .formbold-mb-5 {
             margin-bottom: 20px;
@@ -23,7 +24,7 @@
             margin: 0 auto;
             max-width: 550px;
             width: 100%;
-            background: white;
+            background: #eca0ff;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
             display: block;
@@ -59,7 +60,7 @@
             resize: none;
         }
         .formbold-form-input:focus {
-            border-color: #6a64f1;
+            border-color: #84ffc9;
             box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
         }
 
@@ -70,7 +71,7 @@
             padding: 14px 32px;
             border: none;
             font-weight: 600;
-            background-color: #6a64f1;
+            background-color: #84ffc9;
             color: white;
             cursor: pointer;
         }
@@ -96,7 +97,7 @@
             width: 100%;
         }
         .formbold-form-header {
-            background: #6a64f1;
+            background: #84ffc9;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -106,7 +107,7 @@
         .formbold-form-header h3 {
             font-weight: 700;
             font-size: 20px;
-            color: white;
+            color: #1c1665;
         }
         .formbold-form-header button {
             color: white;
@@ -128,7 +129,7 @@
         .formbold-action-btn {
             width: 70px;
             height: 70px;
-            background: #6a64f1;
+            background: #84ffc9;
             color: white;
             border-radius: 50%;
             margin-left: 20px;
@@ -150,6 +151,15 @@
         .formbold-action-btn.active .formbold-chat-icon {
             display: none;
         }
+
+        .emoji {
+            display: none;
+        }
+
+        .emoji.active {
+            display: block;
+        }
+        
         @media (min-width: 540px) {
             .sm\:w-half {
             width: 50%;

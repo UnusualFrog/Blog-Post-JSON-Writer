@@ -1,5 +1,5 @@
 <html>
-
+<!-- Source: formbold.com/templates/chatbox-form -->
     <head>
         <link rel="stylesheet" href="styles.css">
     </head>
@@ -17,7 +17,7 @@
                     </div>
 
                     <!-- Form Fields -->
-                    <form action="https://formbold.com/s/FORM_ID" method="POST" class="formbold-chatbox-form">
+                    <div action="https://formbold.com/s/FORM_ID" method="POST" class="formbold-chatbox-form">
 
                         <!-- Post Body -->
                         <div class="formbold-mb-5">
@@ -29,15 +29,17 @@
                         <!-- Tags -->
                         <div class="formbold-mb-5">
                             <label for="name" class="formbold-form-label"> Post Tags </label>
-                            <input type="text" name="name" id="name" placeholder="Your Name" class="formbold-form-input" />
+                            <input type="text" name="name" id="name" placeholder="Tag Name" class="formbold-form-input" />
+                            <button onClick="emojiToggleHandler()">click</button>
+                            <emoji-picker class="emoji" ></emoji-picker>
                         </div>
 
                         <div>
                             <button class="formbold-btn w-full">Create Blog Post</button>
                         </div>
 
-                        <emoji-picker></emoji-picker>
-                    </form>
+
+                    </div>
 
                 </div>
 
@@ -46,9 +48,6 @@
 
         <script src="script.js"></script>
         <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
-        <script>
-            
-        </script>
     </body>
 
 </html>
