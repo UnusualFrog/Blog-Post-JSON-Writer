@@ -36,8 +36,8 @@
 
         .formbold-form-label {
             display: block;
-            font-weight: 500;
-            font-size: 16px;
+            font-weight: bold;
+            font-size: x-large;
             color: #07074d;
             margin-bottom: 12px;
         }
@@ -65,6 +65,8 @@
         }
 
         .formbold-btn {
+            width: 100%;
+            margin-top: 10px;
             text-align: center;
             font-size: 16px;
             border-radius: 6px;
@@ -72,7 +74,7 @@
             border: none;
             font-weight: 600;
             background-color: #84ffc9;
-            color: white;
+            color: #1c1665;;
             cursor: pointer;
         }
         .formbold-btn:hover {
@@ -110,7 +112,7 @@
             color: #1c1665;
         }
         .formbold-form-header button {
-            color: white;
+            color: #1c1665;;
             background: transparent;
             border: none;
         }
@@ -130,7 +132,7 @@
             width: 70px;
             height: 70px;
             background: #84ffc9;
-            color: white;
+            color: #1c1665;
             border-radius: 50%;
             margin-left: 20px;
             border: none;
@@ -158,6 +160,36 @@
 
         .emoji.active {
             display: block;
+        }
+        .emoji-button {
+            padding: 5px;
+            background-color: #84ffc9;
+            font-size: x-large;
+            border-radius: 6px;
+        }
+
+        .list-item {
+            color: #1c1665;
+            background-color: #cbffe8;
+            border: 3px solid #1c1665;
+            width: fit-content;
+            margin: 2px;
+            padding: 5px;
+            font-size: large;
+            border-radius: 6px;
+        }
+
+        .tag-text-area {
+            width: 85%;
+            padding: 12px 24px;
+            border-radius: 6px;
+            border: 1px solid #07074d;
+            background: white;
+            font-weight: 500;
+            font-size: 16px;
+            color: #6b7280;
+            outline: none;
+            resize: none;
         }
 
         #tagError {

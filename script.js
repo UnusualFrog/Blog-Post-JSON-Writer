@@ -22,8 +22,6 @@ function toggle() {
 
 function addTag() {
   let tag = ""
-
-  // console.log(tag_text.value);
   tag += tagText.value;
   tag += emojiButton.textContent;
   // console.log(tag);
@@ -36,6 +34,7 @@ function addTag() {
     tagError.textContent = "";
 
     var listItem = document.createElement('li');
+    listItem.className="list-item"
     listItem.appendChild(document.createTextNode(tag));
     tagList.appendChild(listItem);
   }
@@ -47,6 +46,7 @@ document.querySelector('emoji-picker')
       // console.log(event.detail);
 
       emojiButton.textContent = emoji.unicode;
+      emojiPicker.classList.toggle("emoji");
     });
 
 console.log("Hello World")
