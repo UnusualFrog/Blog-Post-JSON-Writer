@@ -1,4 +1,11 @@
 const emojiPicker = document.querySelector('emoji-picker');
+const emojiButton = document.getElementById("emojiButton");
+const body_text = document.getElementById("message");
+const tagText = document.getElementById("tagText");
+const tagList = document.getElementById("tagList");
+const tagError = document.getElementById("tagError");
+
+let existingTagList = []
 
 function emojiToggleHandler() {
     emojiPicker.classList.toggle("emoji");
@@ -13,7 +20,33 @@ function toggle() {
   }
 }
 
+function addTag() {
+  let tag = ""
+
+  // console.log(tag_text.value);
+  tag += tagText.value;
+  tag += emojiButton.textContent;
+  // console.log(tag);
+
+  if (existingTagList.indexOf(tag) > -1){
+    console.log("ERROR: Tag already added");
+    tagError.textContent = "ERROR: Tag already added";
+  } else {
+    existingTagList += tag;
+    tagError.textContent = "";
+
+    var listItem = document.createElement('li');
+    listItem.appendChild(document.createTextNode(tag));
+    tagList.appendChild(listItem);
+  }
+}
+
 document.querySelector('emoji-picker')
-    .addEventListener('emoji-click', event => console.log(event.detail));
+    .addEventListener('emoji-click', event => {
+      let emoji = event.detail
+      // console.log(event.detail);
+
+      emojiButton.textContent = emoji.unicode;
+    });
 
 console.log("Hello World")

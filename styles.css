@@ -25,7 +25,7 @@
             max-width: 550px;
             width: 100%;
             background: #eca0ff;
-            border: 1px solid #e0e0e0;
+            border: 1px solid #07074d;
             border-radius: 8px;
             display: block;
         }
@@ -51,7 +51,7 @@
             width: 100%;
             padding: 12px 24px;
             border-radius: 6px;
-            border: 1px solid #e0e0e0;
+            border: 1px solid #07074d;
             background: white;
             font-weight: 500;
             font-size: 16px;
@@ -158,6 +158,10 @@
 
         .emoji.active {
             display: block;
+        }
+
+        #tagError {
+            color: red;
         }
         
         @media (min-width: 540px) {
