@@ -52,10 +52,10 @@
             padding: 12px 24px;
             border-radius: 6px;
             border: 1px solid #07074d;
-            background: white;
+            background: #84ffc9;
             font-weight: 500;
             font-size: 16px;
-            color: #6b7280;
+            color: #07074d;
             outline: none;
             resize: none;
         }
@@ -184,12 +184,17 @@
             padding: 12px 24px;
             border-radius: 6px;
             border: 1px solid #07074d;
-            background: white;
+            background: #84ffc9;
             font-weight: 500;
             font-size: 16px;
-            color: #6b7280;
+            color: #07074d;
             outline: none;
             resize: none;
+        }
+
+        .tag-text-area:focus {
+            border-color: #84ffc9;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
         }
 
         #tagError {
