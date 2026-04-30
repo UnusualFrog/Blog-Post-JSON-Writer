@@ -1,6 +1,8 @@
+const JSON_PATH = "./blog_posts.json";
+
 const emojiPicker = document.querySelector('emoji-picker');
 const emojiButton = document.getElementById("emojiButton");
-const body_text = document.getElementById("message");
+const bodyText = document.getElementById("message");
 const tagText = document.getElementById("tagText");
 const tagList = document.getElementById("tagList");
 const tagError = document.getElementById("tagError");
@@ -39,6 +41,20 @@ function addTag() {
     tagList.appendChild(listItem);
   }
 }
+
+function fetchJSONData() {
+            fetch(JSON_PATH)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    let existingPosts = response.json()
+
+                    return existingPosts;  
+                })
+                .then(data => console.log(data))  
+                .catch(error => console.error('Failed to fetch data:', error)); 
+        }
 
 document.querySelector('emoji-picker')
     .addEventListener('emoji-click', event => {
