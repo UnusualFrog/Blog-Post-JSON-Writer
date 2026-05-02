@@ -46,8 +46,15 @@
                         </div>
 
                         <!-- Create Post -->
-                        <div>
-                            <button id="download" class="formbold-btn w-full" onclick="fetchJSONData()">Create Blog Post</button>
+                        <div class="formbold-mb-5">
+                            <button id="createPost" class="formbold-btn w-full" onclick="addPost()">Create Blog Post</button>
+                        </div>
+
+                        <!-- Save New Posts -->
+                        <div class="formbold-mb-5">
+                            <label for="name" class="formbold-form-label"> Post Updates </label>
+                            <p>Total Updates: <span id="postCount">0</span></p>
+                            <button id="downloadPosts" class="formbold-btn w-full" onclick="updateData()">Save Blog Posts</button>
                         </div>
 
 
