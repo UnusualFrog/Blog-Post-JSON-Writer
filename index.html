@@ -18,44 +18,50 @@
 
                     <!-- Form Fields -->
                     <div class="formbold-chatbox-form">
+                        <div id="newPost">
+                            <!-- Post Body -->
+                            <div class="formbold-mb-5">
+                                <label for="message" class="formbold-form-label"> Blog Post Body </label>
+                                <textarea rows="6" name="message" id="message" placeholder="Type your thoughts..."
+                                    class="formbold-form-input"></textarea>
+                            </div>
 
-                        <!-- Post Body -->
-                        <div class="formbold-mb-5">
-                            <label for="message" class="formbold-form-label"> Blog Post Body </label>
-                            <textarea rows="6" name="message" id="message" placeholder="Type your thoughts..."
-                                class="formbold-form-input"></textarea>
+                            <!-- Tag Content -->
+                            <div class="formbold-mb-5">
+                                <label for="name" class="formbold-form-label"> Tag Text & Emoji </label>
+                                <input type="text" name="name" id="tagText" placeholder="Enter the name of the tag..." class="tag-text-area" />
+                                <button id="emojiButton" class="emoji-button" onClick="emojiToggleHandler()">&#128512;</button>
+                                <emoji-picker class="emoji" ></emoji-picker>
+                                <button class="formbold-btn" onclick="addTag()">Add Tag</button>
+                            </div>
+
+
+                            <!-- Tag List -->
+                            <div class="formbold-mb-5">
+                                <label for="name" class="formbold-form-label"> Tag List </label>
+                                <p id="tagError"></p>
+                                <ul id="tagList">
+
+                                </ul>
+                            </div>
+
+                            <!-- Create Post -->
+                            <div class="formbold-mb-5">
+                                <p id="createError"></p>
+                                <button id="createPost" class="formbold-btn w-full" onclick="addPost()">Create Blog Post</button>
+                            </div>
                         </div>
-
-                        <!-- Tag Content -->
-                        <div class="formbold-mb-5">
-                            <label for="name" class="formbold-form-label"> Tag Text & Emoji </label>
-                            <input type="text" name="name" id="tagText" placeholder="Enter the name of the tag..." class="tag-text-area" />
-                            <button id="emojiButton" class="emoji-button" onClick="emojiToggleHandler()">&#128512;</button>
-                            <emoji-picker class="emoji" ></emoji-picker>
-                            <button class="formbold-btn" onclick="addTag()">Add Tag</button>
-                        </div>
-
-
-                        <!-- Tag List -->
-                        <div class="formbold-mb-5">
-                            <label for="name" class="formbold-form-label"> Tag List </label>
-                            <p id="tagError"></p>
-                            <ul id="tagList">
-
-                            </ul>
-                        </div>
-
-                        <!-- Create Post -->
-                        <div class="formbold-mb-5">
-                            <button id="createPost" class="formbold-btn w-full" onclick="addPost()">Create Blog Post</button>
-                        </div>
+                            
 
                         <!-- Save New Posts -->
-                        <div class="formbold-mb-5">
-                            <label for="name" class="formbold-form-label"> Post Updates </label>
-                            <p>Total Updates: <span id="postCount">0</span></p>
-                            <button id="downloadPosts" class="formbold-btn w-full" onclick="updateData()">Save Blog Posts</button>
+                        <div id="overview">
+                            <div class="formbold-mb-5">
+                                <label for="name" class="formbold-form-label"> Post Updates </label>
+                                <p class="update_counter ">Total Updates: <span id="postCount">0</span></p>
+                                <button id="downloadPosts" class="formbold-btn w-full" onclick="updateData()">Save Blog Posts</button>
+                            </div>
                         </div>
+                        
 
 
                     </div>

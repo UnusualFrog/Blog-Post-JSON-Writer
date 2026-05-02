@@ -7,24 +7,15 @@ const tagTextElem = document.getElementById("tagText");
 const tagList = document.getElementById("tagList");
 const tagError = document.getElementById("tagError");
 const postCount = document.getElementById("postCount");
+const createError = document.getElementById("createError");
 
 let existingTagList = [];
 let existingPostsJSON;
 let postCounter = 0;
 
-function emojiToggleHandler() {
-    emojiPicker.classList.toggle("emoji");
-    // formActionButton.classList.toggle("active");
-}
 
-function toggle() {
-  if (emojiPicker.style.display === "none") {
-    emojiPicker.style.display = "block";
-  } else {
-    emojiPicker.style.display = "none";
-  }
-}
 
+// Add new tag to current new post
 function addTag() {
   let tagText = ""
   let tagEmoji = ""
@@ -44,7 +35,10 @@ function addTag() {
     console.log("ERROR: Tag text cannot be empty");
     tagError.textContent = "ERROR: Tag text cannot be empty";
   } else {
+    // Track current existing tags
     existingTagList.push(tagFull);
+
+    // Hide error text
     tagError.textContent = "";
 
     // Generate new list item
@@ -54,45 +48,56 @@ function addTag() {
     tagList.appendChild(listItem);
 
     // Clear fields
-    tagText.value = "";
+    tagTextElem.value = "";
   }
 }
 
 // Add new post to existing post data
 function addPost() {
-  let existingPosts = existingPostsJSON;
+  if (bodyText.value == "") {
+    createError.textContent = "ERROR: new post must contain body content";
+  }
+  else if(existingTagList.length == 0) {
+    createError.textContent = "ERROR: new post must contain at least 1 tag";
+  }
+  else {
+    let existingPosts = existingPostsJSON;
 
-  // Get most recent post
-  let mostRecentPost = existingPosts[Object.keys(existingPosts)[Object.keys(existingPosts).length - 1]];
+    // Get most recent post
+    let mostRecentPost = existingPosts[Object.keys(existingPosts)[Object.keys(existingPosts).length - 1]];
 
-  // Increment ID
-  let id = mostRecentPost.ID + 1;
-  // Get current Date
-  let datePosted = new Date();
+    // Increment ID
+    let id = mostRecentPost.ID + 1;
+    // Get current Date
+    let datePosted = new Date();
 
-  // Build new post
-  let newPost = {
-    "ID": id,
-    "main_content": bodyText.value,
-    "date_posted": datePosted.toDateString(),
-    "tags": existingTagList
+    // Build new post
+    let newPost = {
+      "ID": id,
+      "main_content": bodyText.value,
+      "date_posted": datePosted.toUTCString(),
+      "tags": existingTagList
+    }
+
+    // Add new post to existing post data
+    console.log("Added new post")
+    existingPostsJSON[newPost.ID] = newPost;
+    console.log(existingPostsJSON);
+
+    // Update post counter
+    postCounter++;
+    postCount.textContent = postCounter;
+
+    // Clear fields
+    bodyText.value = ""
+    tagTextElem.value = "";
+    tagList.textContent = ""
+    tagError.textContent = "";
+    createError.textContent = ""
+    existingTagList = [];
   }
 
-  // Add new post to existing post data
-  console.log("Added new post")
-  existingPostsJSON[newPost.ID] = newPost;
-  console.log(existingPostsJSON);
-
-  // Update post counter
-  postCounter++;
-  postCount.textContent = postCounter;
-
-  // Clear fields
-  bodyText.value = ""
-  tagText.value = "";
-  tagList.textContent = ""
-  tagError.textContent = "";
-  existingTagList = [];
+  
 }
 
 function initialiseData() {
@@ -109,36 +114,11 @@ function initialiseData() {
                   //  Update existing post data
                   console.log(data)
                   existingPostsJSON = data;
-                  })
+                })
                 
 }
 
 function updateData() {
-            // fetch(JSON_PATH)
-            //     .then(response => {
-            //         if (!response.ok) {
-            //             throw new Error(`HTTP error! Status: ${response.status}`);
-            //         }
-
-            //         return response.json();  
-            //     })
-            //     .then(data => {
-            //       //  Get current post data
-            //       console.log(data)
-            //       existingPostsJSON = data;
-
-            //       // Show download prompt
-            //       let filename = "blog_posts.json";
-            //       download(filename, existingPostsJSON);
-
-            //       // Clear fields
-            //       bodyText.value = ""
-            //       tagList.textContent = ""
-            //       tagError.textContent = "";
-            //       existingTagList = [];
-
-            //     })  
-            //     .catch(error => console.error('Failed to fetch data:', error)); 
              // Show download prompt
             let filename = "blog_posts.json";
             download(filename, existingPostsJSON);
@@ -164,16 +144,37 @@ function download(file, text) {
             document.body.removeChild(element);
         }
 
+// emoji picker helper class
+function emojiToggleHandler() {
+    emojiPicker.classList.toggle("emoji");
+}
+
+// Toggle visibility of emoji picker
+function toggle() {
+  if (emojiPicker.style.display === "none") {
+    emojiPicker.style.display = "block";
+  } else {
+    emojiPicker.style.display = "none";
+  }
+}
+
 // Update emoji button value and toggle picker visibility
 document.querySelector('emoji-picker')
     .addEventListener('emoji-click', event => {
       let emoji = event.detail
-      // console.log(event.detail);
 
+      // Update emoji button to match the picked emoji
       emojiButton.textContent = emoji.unicode;
+      // Hide the emoji picker
       emojiPicker.classList.toggle("emoji");
     });
 
 
-console.log("Hello World")
-initialiseData()
+// ========== MAIN ==========
+
+function main() {
+  console.log("Hello World")
+  initialiseData()
+}
+
+main();
