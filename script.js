@@ -8,6 +8,7 @@ const tagList = document.getElementById("tagList");
 const tagError = document.getElementById("tagError");
 const postCount = document.getElementById("postCount");
 const createError = document.getElementById("createError");
+const loadInput = document.getElementById("file-input");
 
 let existingTagList = [];
 let existingPostsJSON;
@@ -118,6 +119,12 @@ function initialiseData() {
                 
 }
 
+function loadData() {
+  // Show upload prompt
+  loadInput.click()
+  
+}
+
 function updateData() {
              // Show download prompt
             let filename = "blog_posts.json";
@@ -158,9 +165,35 @@ function toggle() {
   }
 }
 
+// Get value of user loaded data
+loadInput.addEventListener('change', function(event){
+
+  // Get selected file
+  const file = event.target.files[0];
+      // Ensure file not empty
+      if (file) {
+          // Initialise file reader
+          const reader = new FileReader();
+
+          // Add onload event for reading file data
+          reader.onload = function(e) {
+            console.log(e.target.result)
+
+            // Convert string data to JSON
+            let data = JSON.parse(e.target.result)
+            console.log(data)
+
+            // Set global data variable to current data
+            existingPostsJSON = data;
+          };
+          // Read file contents as plain text
+          reader.readAsText(file);
+      }
+})
+
+
 // Update emoji button value and toggle picker visibility
-document.querySelector('emoji-picker')
-    .addEventListener('emoji-click', event => {
+emojiPicker.addEventListener('emoji-click', event => {
       let emoji = event.detail
 
       // Update emoji button to match the picked emoji
@@ -174,7 +207,7 @@ document.querySelector('emoji-picker')
 
 function main() {
   console.log("Hello World")
-  initialiseData()
+  // initialiseData()
 }
 
 main();
