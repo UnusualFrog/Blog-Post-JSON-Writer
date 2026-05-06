@@ -1,4 +1,4 @@
-const JSON_PATH = "./blog_posts.json";
+const JSON_PATH = "../blog_posts.json";
 
 const emojiPicker = document.querySelector('emoji-picker');
 const emojiButton = document.getElementById("emojiButton");
@@ -25,6 +25,7 @@ function addTag() {
   tagText += tagTextElem.value.trim();
   tagEmoji += emojiButton.textContent;
   tagFull = tagText + tagEmoji;
+  tagFull = tagFull.toLowerCase()
   // console.log(tag);
 
   // Check if tag exists
