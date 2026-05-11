@@ -9,6 +9,7 @@ const tagError = document.getElementById("tagError");
 const postCount = document.getElementById("postCount");
 const createError = document.getElementById("createError");
 const loadInput = document.getElementById("file-input");
+const imageURL = document.getElementById("imageURL");
 
 let existingTagList = [];
 let existingPostsJSON;
@@ -78,7 +79,8 @@ function addPost() {
       "ID": id,
       "main_content": bodyText.value,
       "date_posted": datePosted.toUTCString(),
-      "tags": existingTagList
+      "tags": existingTagList,
+      "img": imageURL.value
     }
 
     // Add new post to existing post data
@@ -96,6 +98,7 @@ function addPost() {
     tagList.textContent = ""
     tagError.textContent = "";
     createError.textContent = ""
+    imageURL.value = "";
     existingTagList = [];
   }
 
