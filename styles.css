@@ -219,7 +219,14 @@
             border-radius: 6px;
         }
         
-        #overview {
+        #loadBtn {
+            background-color: #84ffc9;
+            padding: 25px;
+            margin: 5px 5px 5px 5px;
+            border-radius: 6px;
+        }
+
+        #saveBtn {
             background-color: #84ffc9;
             padding: 25px;
             margin: 5px 5px 5px 5px;

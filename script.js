@@ -13,6 +13,10 @@ const loadInput = document.getElementById("file-input");
 const imageURL = document.getElementById("imageURL");
 const imgPreview = document.getElementById("imgPreview");
 const previewLbl = document.getElementById("previewLbl");
+const loadBtnArea = document.getElementById("loadBtn");
+const newPostArea = document.getElementById("newPost");
+const saveBtnArea = document.getElementById("saveBtn");
+
 
 let existingTagList = [];
 let existingPostsJSON;
@@ -190,6 +194,9 @@ loadInput.addEventListener('change', function (event) {
   const file = event.target.files[0];
   // Ensure file not empty
   if (file) {
+    newPostArea.style.display = "block"
+    saveBtnArea.style.display = "block"
+
     // Initialise file reader
     const reader = new FileReader();
 
@@ -220,7 +227,7 @@ emojiPicker.addEventListener('emoji-click', event => {
   emojiPicker.classList.toggle("emoji");
 });
 
-
+// Control display of image preview
 imageURL.addEventListener('change', event => {
   if (imageURL.value != "") {
     previewLbl.style.display = "block"
