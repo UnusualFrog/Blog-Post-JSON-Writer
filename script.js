@@ -3,6 +3,7 @@ const JSON_PATH = "../blog_posts.json";
 const emojiPicker = document.querySelector('emoji-picker');
 const emojiButton = document.getElementById("emojiButton");
 const bodyText = document.getElementById("message");
+const titleText = document.getElementById("title");
 const tagTextElem = document.getElementById("tagText");
 const tagList = document.getElementById("tagList");
 const tagError = document.getElementById("tagError");
@@ -10,6 +11,7 @@ const postCount = document.getElementById("postCount");
 const createError = document.getElementById("createError");
 const loadInput = document.getElementById("file-input");
 const imageURL = document.getElementById("imageURL");
+const imgPreview = document.getElementById("imgPreview");
 
 let existingTagList = [];
 let existingPostsJSON;
@@ -30,11 +32,11 @@ function addTag() {
   // console.log(tag);
 
   // Check if tag exists
-  if (existingTagList.indexOf(tagFull) > -1){
+  if (existingTagList.indexOf(tagFull) > -1) {
     console.log("ERROR: Tag already added");
     tagError.textContent = "ERROR: Tag already added";
   }
-  else if (tagText ==  ""){
+  else if (tagText == "") {
     console.log("ERROR: Tag text cannot be empty");
     tagError.textContent = "ERROR: Tag text cannot be empty";
   } else {
@@ -46,7 +48,7 @@ function addTag() {
 
     // Generate new list item
     var listItem = document.createElement('li');
-    listItem.className="list-item"
+    listItem.className = "list-item"
     listItem.appendChild(document.createTextNode(tagFull));
     tagList.appendChild(listItem);
 
@@ -58,10 +60,13 @@ function addTag() {
 // Add new post to existing post data
 function addPost() {
   if (bodyText.value == "") {
-    createError.textContent = "ERROR: new post must contain body content";
+    createError.textContent = "ERROR: Must contain body content";
   }
-  else if(existingTagList.length == 0) {
-    createError.textContent = "ERROR: new post must contain at least 1 tag";
+  else if (titleText.value == "") {
+    createError.textContent = "ERROR: Must contain valid title";
+  }
+  else if (existingTagList.length == 0) {
+    createError.textContent = "ERROR: Must contain at least 1 tag";
   }
   else {
     let existingPosts = existingPostsJSON;
@@ -77,6 +82,7 @@ function addPost() {
     // Build new post
     let newPost = {
       "ID": id,
+      "title": titleText.value,
       "main_content": bodyText.value,
       "date_posted": datePosted.toUTCString(),
       "tags": existingTagList,
@@ -94,6 +100,7 @@ function addPost() {
 
     // Clear fields
     bodyText.value = ""
+    titleText.value = ""
     tagTextElem.value = "";
     tagList.textContent = ""
     tagError.textContent = "";
@@ -102,62 +109,63 @@ function addPost() {
     existingTagList = [];
   }
 
-  
+
 }
 
 function initialiseData() {
   console.log("Initialising data...")
   fetch(JSON_PATH)
     .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
 
-                    return response.json();  
-                })
+      return response.json();
+    })
     .then(data => {
-                  //  Update existing post data
-                  console.log(data)
-                  existingPostsJSON = data;
-                })
-                
+      //  Update existing post data
+      console.log(data)
+      existingPostsJSON = data;
+    })
+
 }
 
 function loadData() {
   // Show upload prompt
   loadInput.click()
-  
+
 }
 
 function updateData() {
-             // Show download prompt
-            let filename = "blog_posts.json";
-            download(filename, existingPostsJSON);
+  // Show download prompt
+  let filename = "blog_posts.json";
+  download(filename, existingPostsJSON);
 
-            // Clear fields
-            bodyText.value = ""
-            tagList.textContent = ""
-            tagError.textContent = "";
-            existingTagList = [];
-        }
+  // Clear fields
+  bodyText.value = ""
+  titleText.value = ""
+  tagList.textContent = ""
+  tagError.textContent = "";
+  existingTagList = [];
+}
 
 // Prompt user download 
 function download(file, text) {
-            var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(existingPostsJSON, null, 2));
-            //creating an invisible element
+  var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(existingPostsJSON, null, 2));
+  //creating an invisible element
 
-            let element = document.createElement('a');
-            element.setAttribute('href', dataStr);
-            element.setAttribute('download', file);
-            document.body.appendChild(element);
-            element.click();
+  let element = document.createElement('a');
+  element.setAttribute('href', dataStr);
+  element.setAttribute('download', file);
+  document.body.appendChild(element);
+  element.click();
 
-            document.body.removeChild(element);
-        }
+  document.body.removeChild(element);
+}
 
 // emoji picker helper class
 function emojiToggleHandler() {
-    emojiPicker.classList.toggle("emoji");
+  emojiPicker.classList.toggle("emoji");
 }
 
 // Toggle visibility of emoji picker
@@ -170,42 +178,46 @@ function toggle() {
 }
 
 // Get value of user loaded data
-loadInput.addEventListener('change', function(event){
+loadInput.addEventListener('change', function (event) {
 
   // Get selected file
   const file = event.target.files[0];
-      // Ensure file not empty
-      if (file) {
-          // Initialise file reader
-          const reader = new FileReader();
+  // Ensure file not empty
+  if (file) {
+    // Initialise file reader
+    const reader = new FileReader();
 
-          // Add onload event for reading file data
-          reader.onload = function(e) {
-            console.log(e.target.result)
+    // Add onload event for reading file data
+    reader.onload = function (e) {
+      console.log(e.target.result)
 
-            // Convert string data to JSON
-            let data = JSON.parse(e.target.result)
-            console.log(data)
+      // Convert string data to JSON
+      let data = JSON.parse(e.target.result)
+      console.log(data)
 
-            // Set global data variable to current data
-            existingPostsJSON = data;
-          };
-          // Read file contents as plain text
-          reader.readAsText(file);
-      }
+      // Set global data variable to current data
+      existingPostsJSON = data;
+    };
+    // Read file contents as plain text
+    reader.readAsText(file);
+  }
 })
 
 
 // Update emoji button value and toggle picker visibility
 emojiPicker.addEventListener('emoji-click', event => {
-      let emoji = event.detail
+  let emoji = event.detail
 
-      // Update emoji button to match the picked emoji
-      emojiButton.textContent = emoji.unicode;
-      // Hide the emoji picker
-      emojiPicker.classList.toggle("emoji");
-    });
+  // Update emoji button to match the picked emoji
+  emojiButton.textContent = emoji.unicode;
+  // Hide the emoji picker
+  emojiPicker.classList.toggle("emoji");
+});
 
+
+imageURL.addEventListener('change', event => {
+  imgPreview.src = imageURL.value
+})
 
 // ========== MAIN ==========
 
