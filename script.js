@@ -12,6 +12,7 @@ const createError = document.getElementById("createError");
 const loadInput = document.getElementById("file-input");
 const imageURL = document.getElementById("imageURL");
 const imgPreview = document.getElementById("imgPreview");
+const previewLbl = document.getElementById("previewLbl");
 
 let existingTagList = [];
 let existingPostsJSON;
@@ -107,6 +108,8 @@ function addPost() {
     createError.textContent = ""
     imageURL.value = "";
     existingTagList = [];
+    previewLbl.style.display = "none"
+    imgPreview.src = ""
   }
 
 
@@ -147,6 +150,9 @@ function updateData() {
   tagList.textContent = ""
   tagError.textContent = "";
   existingTagList = [];
+  imageURL.value = "";
+  previewLbl.style.display = "none"
+  imgPreview.src = ""
 }
 
 // Prompt user download 
@@ -216,6 +222,11 @@ emojiPicker.addEventListener('emoji-click', event => {
 
 
 imageURL.addEventListener('change', event => {
+  if (imageURL.value != "") {
+    previewLbl.style.display = "block"
+  } else {
+    previewLbl.style.display = "none"
+  }
   imgPreview.src = imageURL.value
 })
 

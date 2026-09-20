@@ -39,7 +39,7 @@
                         <!-- Post Body -->
                         <div class="formbold-mb-5">
                             <label for="message" class="formbold-form-label"> Blog Post Body </label>
-                            <textarea rows="6" name="message" id="message" placeholder="Type your thoughts..."
+                            <textarea rows="32" name="message" id="message" placeholder="Type your thoughts..."
                                 class="formbold-form-input"></textarea>
                         </div>
 
@@ -48,7 +48,8 @@
                             <label for="name" class="formbold-form-label"> Image (Optional) </label>
                             <input type="text" name="name" id="imageURL" placeholder="Enter the image's url..."
                                 class="tag-text-area" />
-                            <label for="name" class="formbold-form-label"> Image Preview </label>
+                            <!-- Preview -->
+                            <label for="name" id="previewLbl" style="display:none" class="formbold-form-label"> Image Preview </label>
                             <img id="imgPreview" src="">
                         </div>
 
