@@ -180,6 +180,11 @@
             border-radius: 6px;
         }
 
+        .list-item:hover {
+            color: #FF0000;
+            border: 5px solid #FF0000;
+        }
+
         .tag-text-area {
             width: 95%;
             padding: 12px 24px;
